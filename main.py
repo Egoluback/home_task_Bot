@@ -9,7 +9,7 @@ from vk_api.utils import get_random_id
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import vk_api
 
-TOKEN = 'b4ee4a01ecf6ae3e405fc8903e3ae97436e894193fc25ce8335ba1f5bac032c76bad75adb176f15f793e4'
+TOKEN = 'YOUR_TOKEN_HERE'
 data = []
 try:
     with open('data/dataFile.json', 'r') as file:
