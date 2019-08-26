@@ -9,7 +9,7 @@ from vk_api.utils import get_random_id
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import vk_api
 
-TOKEN = 'YOUR_TOKEN_HERE'
+TOKEN = 'b4ee4a01ecf6ae3e405fc8903e3ae97436e894193fc25ce8335ba1f5bac032c76bad75adb176f15f793e4'
 data = []
 try:
     with open('data/dataFile.json', 'r') as file:
@@ -34,13 +34,14 @@ while True:
                 request = event.object.text
                 if "$ввести" in request.lower():
                     toAddArr = request.split(' ', 3)
-                    if (len(toAddArr) != 1):
+                    if (len(toAddArr) == 4):
                         print(request)
                         data.append({'date': toAddArr[1], 'subject': toAddArr[2], 'content': toAddArr[3]})
                         with open("data/dataFile.json", "w") as file:
                             json.dump(data, file)
 
                         vk.messages.send(chat_id = event.chat_id, message = "Информация записана!", random_id = get_random_id())
+                    print(len(toAddArr))
                 elif request.lower() == "$посмотретьвсе":
                     if len(data) > 0:
                         for dataCell in data:
@@ -49,12 +50,12 @@ while True:
                         vk.messages.send(chat_id = event.chat_id, message = "Нет информации!", random_id = get_random_id())
                 elif "$посмотреть" in request.lower():
                     toAddArr = request.split(' ')
-                    if (len(toAddArr) != 1):
+                    if (len(toAddArr) == 3):
                         isThereHomeTask = False
                         if len(data) > 0:
                             for dataCell in data:
                                 if (dataCell['date'] == toAddArr[1]):
-                                    vk.messages.send(chat_id = event.chat_id, message = "Предмет:" + dataCell['subject'] + "; Д/з: " + dataCell['content'], random_id = get_random_id())
+                                    vk.messages.send(chat_id = event.chat_id, message = "Предмет: " + dataCell['subject'] + "; Д/з: " + dataCell['content'], random_id = get_random_id())
                                     isThereHomeTask = True
                         else:
                             vk.messages.send(chat_id = event.chat_id, message = "Нет информации!", random_id = get_random_id())
