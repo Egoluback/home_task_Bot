@@ -50,7 +50,7 @@ while True:
                         vk.messages.send(chat_id = event.chat_id, message = "Нет информации!", random_id = get_random_id())
                 elif "$посмотреть" in request.lower():
                     toAddArr = request.split(' ')
-                    if (len(toAddArr) == 3):
+                    if (len(toAddArr) == 2):
                         isThereHomeTask = False
                         if len(data) > 0:
                             for dataCell in data:
