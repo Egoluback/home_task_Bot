@@ -9,7 +9,7 @@ from vk_api.utils import get_random_id
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import vk_api
 
-TOKEN = 'YOUR_TOKEN_HERE'
+TOKEN = 'b4ee4a01ecf6ae3e405fc8903e3ae97436e894193fc25ce8335ba1f5bac032c76bad75adb176f15f793e4'
 data = []
 try:
     with open('data/dataFile.json', 'r') as file:
@@ -23,12 +23,13 @@ vk_session._auth_token()
 vk = vk_session.get_api()
 longpoll = VkBotLongPoll(vk_session, 185880701)
 
-print("Bot has started.")
+print("Bot has been launched.")
 
 while True:
     for event in longpoll.listen():
         print("there is new event - " + str(event.type))
         if event.type == VkBotEventType.MESSAGE_NEW:
+            print(str(event.object.from_id) + " - " + event.object.text)
             if (event.from_chat):
                 request = event.object.text
                 if "$ввести" in request.lower():
